@@ -27,7 +27,7 @@
 
 1. 🤖 [はじめに](#intro)
 2. 🔗 [URL](#url)
-3. 😮‍💨 [ドメイン名選定支援 AI ツール Domina の概要](#description)
+3. 😮‍💨 [Domina の概要](#description)
 4. 🔋 [Domina の機能](#feature)
 5. 💻 [画面サンプル](#screen_sample)
 6. 🤸 [終わりに](#outro)
