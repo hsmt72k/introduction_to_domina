@@ -120,9 +120,9 @@ flowchart LR
     end
 
     %% ─── Application Flow ─────────────
-    app   -- "1. Generate name ideas" --> genai
+    app   -- "1.Generate name ideas" --> genai
     genai -- "ideas (JSON)"           --> app
-    app   -- "2. Check availability"  --> whois
+    app   -- "2.Check availability"  --> whois
     whois -- "availability (JSON)"    --> app
     app   -->|候補 + 空き状況を表示| input
 ```
