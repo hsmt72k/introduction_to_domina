@@ -137,8 +137,6 @@ flowchart LR
 
 <img src="./images/hero_light.png" width="480px" />
 
-<img src="./images/hero_dark.png" width="480px" />
-
 - ユーザにサイトのポイントを伝えるメッセージを表示
 
 ### 💡 ドメイン名提案セクション
