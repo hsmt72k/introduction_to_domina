@@ -99,26 +99,32 @@ Domina は、**100% AI がコーディングしたアプリ** です。
 - 🌙 ダークモード切替テーマ
 
 ```mermaid
-%%  Domina – System Architecture (Simplified)
-%%  Flow: User → Next.js → External APIs → Response + LocalStorage
+%% Domina – System Architecture (Simplified)
+
 flowchart LR
+    %% ─── Client ───────────────────────
     subgraph Client["ユーザー & ブラウザ"]
-        A[🧑‍💻 User Input] -->|「ビジネス案」| B((Next.js<br>App))
-        B -.-> F[(LocalStorage<br>Saved Ideas)]
-        F -.-> B
+        input[🧑‍💻 User Input]
+        app((Next.js<br/>App))
+        local[(LocalStorage<br/>Saved&nbsp;Ideas)]
+
+        input -- 「ビジネス案」 --> app
+        app   -.-> local
+        local -.-> app
     end
 
-    subgraph External_APIs["外部 AI / ドメインサービス"]
-        C{{Gemini API<br>(アイデア生成)}}
-        D{{Domain Availability API<br>(WHOIS / Domainr)}}
+    %% ─── External APIs ────────────────
+    subgraph "外部 AI / ドメインサービス"
+        genai{{"Gemini&nbsp;API<br/>(アイデア生成)"}}
+        whois{{"Domain&nbsp;Availability&nbsp;API<br/>(WHOIS&nbsp;/&nbsp;Domainr)"}}
     end
 
-    %% Application flow
-    B -- "1. Generate name ideas" --> C
-    C -- "ideas (JSON)" --> B
-    B -- "2. Check availability" --> D
-    D -- "availability (JSON)" --> B
-    B -->|候補 + 空き状況を表示| A
+    %% ─── Application Flow ─────────────
+    app   -- "1. Generate name ideas" --> genai
+    genai -- "ideas (JSON)"           --> app
+    app   -- "2. Check availability"  --> whois
+    whois -- "availability (JSON)"    --> app
+    app   -->|候補 + 空き状況を表示| input
 ```
 
 ---
