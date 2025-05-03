@@ -36,6 +36,8 @@
 
 ドメイン名の発想から可用性チェック、詳細情報取得までを一括でサポートする、ドメイン名選定支援 AI ツール、**Domina** を紹介します。
 
+Domina の作成にはコーディングは一切行わず、AI（Calue 3.7 Sonnet）と対話しながら設計・作成・修正を進めた「100% AIコーディング」アプリです。
+
 ## <a name="url">🔗 URL</a>
 
 Domina | AI DOMAIN NAME SEARCH TOOL  
@@ -95,6 +97,29 @@ Domina は、**100% AI がコーディングしたアプリ** です。
 - 🛠️ フィーチャーズセクション
 - 📌 スタイル切り替わり固定ヘッダ
 - 🌙 ダークモード切替テーマ
+
+```mermaid
+%%  Domina – System Architecture (Simplified)
+%%  Flow: User → Next.js → External APIs → Response + LocalStorage
+flowchart LR
+    subgraph Client["ユーザー & ブラウザ"]
+        A[🧑‍💻 User Input] -->|「ビジネス案」| B((Next.js<br>App))
+        B -.-> F[(LocalStorage<br>Saved Ideas)]
+        F -.-> B
+    end
+
+    subgraph External_APIs["外部 AI / ドメインサービス"]
+        C{{Gemini API<br>(アイデア生成)}}
+        D{{Domain Availability API<br>(WHOIS / Domainr)}}
+    end
+
+    %% Application flow
+    B -- "1. Generate name ideas" --> C
+    C -- "ideas (JSON)" --> B
+    B -- "2. Check availability" --> D
+    D -- "availability (JSON)" --> B
+    B -->|候補 + 空き状況を表示| A
+```
 
 ---
 
